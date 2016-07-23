@@ -2,22 +2,21 @@
 using System.Collections;
 
 public class ActionManager : MonoBehaviour {
+
 	static ActionManager instance;
 	bool end = false;
 
-	UnityChanCoin unityChan;
+	UnityChanMove unityChan;
 
-	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		instance = this;
-		unityChan = GetComponent<UnityChanCoin>();
+		unityChan = GetComponent<UnityChanMove>();
 	}
 
-	
-	// Update is called once per frame
-	void Update () {
-	
-		if( GameOver.GameOverFlag)
+	void Update()
+	{
+		if(GameOver.GameOverFlag)
 		{
 			if(end)
 			{
@@ -28,58 +27,45 @@ public class ActionManager : MonoBehaviour {
 		}
 	}
 
-	
 	public static ActionManager GetInstance()
 	{
 		return instance;
 	}
 
-	public void OKActiocn(int Point , string action)
+	public void OKActiocn(int Point, string action)
 	{
-
-		if(Point == 0 )
+		if(Point == 0)
 		{
-			//MISS
 			Score.GetInstance().LifeDown();
 			unityChan.UnityDamageAnime();
 			return;
-		}else
-		if(Point == 1 )
-		{
-			//OK
-			Score.ScorePoint += 10;
-		}else
-		if(Point == 2 )
-		{
-			//GRATE
-			Score.ScorePoint += 20;
-		}
+		} else
+			if(Point == 1)
+			{
+				Score.ScorePoint += 10;
+			}else
+				if(Point == 2)
+				{
+					Score.ScorePoint += 20;
+				}
 
 		switch(action)
 		{
-			case "Z":
+		case "Z":
 			{
 				unityChan.UnityPose(1);
 				break;
 			}
-			case "X":
+		case "X":
 			{
 				unityChan.UnityPose(2);
 				break;
 			}
-			case "C":
+		case "C":
 			{
 				unityChan.UnityPose(3);
 				break;
 			}
 		}
-
-
-
 	}
-
 }
-
-
-
-

@@ -1,34 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
+
 	public static bool GameOverFlag = false; 
-	[SerializeField] GameObject text ;
-	// Use this for initialization
+	[SerializeField] GameObject text = null;
+
 	void Start()
 	{
 		GameOverFlag = false;
 	}
 
-
 	void OnGUI()
 	{
-		if( GameOverFlag )
+		if(GameOverFlag)
 		{
 			text.gameObject.SetActive(true);
 
-			if(GUI.Button(new Rect(Screen.width/2 , Screen.height/2  ,Screen.width/2 , 90), "Retry"))
+			if(GUI.Button(new Rect(Screen.width / 4, Screen.height / 2, Screen.width / 2, 90), "Retry"))
 			{
 				GameOverFlag = false;
-				Application.LoadLevel("main");
+				SceneManager.LoadScene("main");
 			}
 
-		}else
+		} else
 		{
 			text.gameObject.SetActive(false);
 		}
 	}
-
-
-
 }
